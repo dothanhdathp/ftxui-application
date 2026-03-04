@@ -1,0 +1,4 @@
+!#/usr/bin/sh
+
+cmake -S . -B out
+cmake --build out
