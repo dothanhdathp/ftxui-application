@@ -6,9 +6,10 @@ project(ftxui-application)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 # Create the executable
-add_executable(ftxui-application main.cpp)
+add_executable(ftxui-application main.cpp ${SOURCES})
 
 # Load "include" to main
 target_include_directories(ftxui-application PUBLIC include)
