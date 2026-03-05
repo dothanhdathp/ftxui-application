@@ -1,4 +1,22 @@
+#ifndef WAV_HPP
+#define WAV_HPP
+
 #include <inttypes.h>
+
+enum e_file_t {
+    E_PCM_FILE,
+    E_WAV_FILE,
+};
+
+struct audio_info {
+  uint16_t sample_rate;
+  uint16_t amplitude;
+  uint16_t channel;
+  uint16_t frequence;
+  uint16_t bit_per_sample;
+  uint16_t duration;
+  e_file_t filetype;
+};
 
 struct WAVHeader {
   char riff[4] = {'R', 'I', 'F', 'F'};
@@ -16,10 +34,4 @@ struct WAVHeader {
   uint32_t subchunk2Size;
 };
 
-struct audio_data {
-  uint16_t sample_rate;
-  uint16_t amplitude;
-  uint16_t channel;
-  uint16_t frequence;
-  uint16_t bitrate;
-};
+#endif // #define WAV_HPPWAV_HPP

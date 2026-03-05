@@ -1,8 +1,8 @@
 #include <audio/wav.hpp>
-#include <ftxapp.hpp>
+#include <FtxApp.hpp>
 
 int main(int argc, const char *args[]) {
-    AppMain app = AppMain(argc, args);
+    FtxApp app = FtxApp(argc, args);
     app.Init();
     app.RenderScreen();
     app.RunLoop();
@@ -15,7 +15,7 @@ int main(int argc, const char *args[]) {
 
 // template<typename T>
 // bool generate_audio(
-//     audio_data &data,
+//     audio_info &data,
 //     std::string filename,
 //     int duration
 //   ) {
