@@ -1,15 +1,28 @@
-# Ftxui Application
+# Ftxui Application Audio Generator
 
-## Nội Dung
+## Audio Generator
 
-Đây là các cấu hình nhỏ cần thiết để tự dựng một ứng dụng bằng **ftxui**. Trong thư viện này tiến trình build sẽ sử dụng CMake nên yêu cầu **Make** và **CMake**
+- Ứng dụng đầu tiên dùng để tạo các tệp audio sinway và được vẽ thông qua ftxui.
 
-## Mục Tiêu
+## Riêng Cho Window
 
-1. Xây dựng mô hình dựng và các cấu hình tổng quát cho ftxui, hướng tới việc sử dụng các thư viện sẵn có đầy đủ để dựng chương trình, tiện thể tải và load tất cả các thư viện cần thiết.
-1. Mong muốn có thể biên dịch chéo
-1. Mong muốn có thể hỗ trợ để xây dựng chương trình chạy được trên mọi loại thiết bị.
+- Cần sử dụng và tải về [msys2](https://www.msys2.org/)
+- Trong các tệp tại thư mục `C:\msys64`, sử dụng phần mềm __mingw64.exe__
+- Sau đó tải về các tệp cấu hình phục thuộc sau (bắt buộc)
 
-## Về Nhánh
+```cmake
+pacman -S mingw-w64-ucrt-x86_64-gcc
+pacman -S mingw-w64-ucrt-x86_64-cmake
+# pacman -S mingw-w64-ucrt-x86_64-ncurses
+```
 
-Tôi sẽ để phần code base lên nhánh `template`. Các nhánh còn lại nên _**checkout**_ hoặc sao chép về và biên dịch riêng.
+> Chú thích: ncurses không có mặc định trên windows nên cần riêng.
+
+## Build
+
+Sử dụng lệnh sau để dựng ứng dụng
+
+```cmake
+cmake -S . -B out
+cmake --build out
+```
