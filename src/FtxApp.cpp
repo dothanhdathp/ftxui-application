@@ -48,9 +48,9 @@ void FtxApp::RenderScreen() {
         mComponentMap[COMP_DROPDOWN_CHANNEL],
         mComponentMap[COMP_INPUT_FREQ],
         mComponentMap[COMP_DROPDOWN_BPS],
+        mComponentMap[COMP_DROPDOWN_FILETYPE],
         mComponentMap[COMP_INPUT_DURATION],
         mComponentMap[COMP_TXT_FILENAME],
-        mComponentMap[COMP_DROPDOWN_FILETYPE],
         mComponentMap[COMP_BTN_GENERATE],
         mComponentMap[COMP_BTN_HELP],
     });
