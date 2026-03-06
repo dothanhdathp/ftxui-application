@@ -1,7 +1,6 @@
 #include <ftxui/component/component.hpp>          // for Button, Horizontal, Renderer, Dropdown, Horizontal, Vertical
 #include <ftxui/component/component_base.hpp>     // for ComponentBase
 #include <ftxui/component/screen_interactive.hpp> // for ScreenInteractive
-#include <ftxui/component/captured_mouse.hpp>     // for ftxui
 #include <AudioGenerator.hpp>
 #include <vector>
 #include <unordered_map>
@@ -36,8 +35,8 @@ private:
     int m_amplitude = 1000;
     int m_frequency = 1000;
     // String display
-    std::string m_display_duration  = "0";
-    std::string m_display_filename  = "";
+    std::string m_display_duration  = "60";
+    std::string m_display_filename  = "audiotest";
     std::string m_display_amplitude = "1000";
     std::string m_display_frequency = "1000";
     std::string m_display_message   = "";
@@ -46,13 +45,14 @@ private:
     int m_sel_channel         = 1;
     int m_sel_bits_per_sample = 0;
     int m_sel_file_type       = 0;
+    float m_thread_render_progress;
     ftxui::Element mElementVbox;
 public:
     void Init();
     void RenderScreen();
     void RunLoop();
     void Notify(std::string);
-    void RefressScreen();
+    void Refresh();
 
 private:
     ftxui::ButtonOption 

@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <ranges>
+#include <format>
 #include <initializer_list>
 #include <AudioGenerator.hpp>
 
@@ -32,7 +33,7 @@ void FtxApp::Notify(std::string message = std::string()) {
     m_display_message = message;
 }
 
-void FtxApp::RefressScreen() {
+void FtxApp::Refresh() {
     mScreenInteractive.PostEvent(ftxui::Event::Custom);
 }
 
@@ -62,12 +63,12 @@ void FtxApp::RenderScreen() {
             ftxui::hbox(ftxui::text("Channel         : ") | ftxui::center, mComponentMap[COMP_DROPDOWN_CHANNEL]->Render()),
             ftxui::hbox(ftxui::text("Frequency       : ") | ftxui::center, mComponentMap[COMP_INPUT_FREQ]->Render()),
             ftxui::hbox(ftxui::text("Bits per sample : ") | ftxui::center, mComponentMap[COMP_DROPDOWN_BPS]->Render()),
+            ftxui::hbox(ftxui::text("File type       : ") | ftxui::center, mComponentMap[COMP_DROPDOWN_FILETYPE]->Render()),
             ftxui::hbox(ftxui::text("Duration        : ") | ftxui::center, mComponentMap[COMP_INPUT_DURATION]->Render())   | ftxui::size(ftxui::HEIGHT,ftxui::EQUAL,3),
             ftxui::hbox(ftxui::text("File name       : ") | ftxui::center, mComponentMap[COMP_TXT_FILENAME]->Render())     | ftxui::size(ftxui::HEIGHT,ftxui::EQUAL,3),
-            ftxui::hbox(ftxui::text("File type       : ") | ftxui::center, mComponentMap[COMP_DROPDOWN_FILETYPE]->Render()),
             ftxui::separator(),
             ftxui::hbox(mComponentMap[COMP_BTN_GENERATE]->Render(), mComponentMap[COMP_BTN_HELP]->Render()),
-            ftxui::gauge(AudioGenerator::getInstance().m_thread_render_progress) | ftxui::color(ftxui::Color::Green) | ftxui::border,
+            ftxui::gauge(AudioGenerator::getInstance().m_thread_render_progress) | ftxui::color(ftxui::Color::Green) | ftxui::border ,
             ftxui::separator(),
             ftxui::paragraph(this->m_display_message) | ftxui::size(ftxui::HEIGHT,ftxui::GREATER_THAN,1),
         })) | ftxui::border;
@@ -219,9 +220,9 @@ void FtxApp::on_button_generate() {
     audio_info info;
     try {
         info.sample_rate = std::stoi(AudioGenerator::getInstance().listSimpleRate[m_sel_sample_rate]);
-        info.amplitude = m_amplitude;
+        info.amplitude = std::stoi(m_display_amplitude);
         info.channel = AudioGenerator::getInstance().listChannels[m_sel_channel][0] - '0'; // Get first value reduce to '0' becasue channels from 1->8
-        info.frequence = m_frequency;
+        info.frequence = std::stoi(m_display_frequency);
         info.bit_per_sample  = std::stoi(AudioGenerator::getInstance().listBitsPerSample[m_sel_bits_per_sample]);
         info.duration = std::stoi(m_display_duration);
         info.filetype = static_cast<e_file_t>(m_sel_file_type);
@@ -251,5 +252,9 @@ void FtxApp::on_button_generate() {
 }
 
 void FtxApp::on_show_help() {
-    Notify("This Application generate sinway signal audio file in pcm(raw), wav, ... by input parameter.\nRegards, Tad!");
+    Notify(
+        "This program genger file pcm(raw), wav, ... base on your input parameter.\n"
+        "Application support the test file gen test audio data.\n"
+        "Regards, (Author) Tad!"
+    );
 }

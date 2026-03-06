@@ -15,7 +15,7 @@ class IAudioGeneratorCallback {
 public:
     virtual ~IAudioGeneratorCallback() = default;
     virtual void Notify(std::string) = 0;
-    virtual void RefressScreen() = 0;
+    virtual void Refresh() = 0;
 };
 
 class AudioGenerator {
@@ -32,12 +32,11 @@ public:
     const std::vector<std::string> listFileTypes     = { "PCM (RAW)", "WAV" };
 
     /** Passing selection data to this */
-    void GenerateAudioFile(
-        audio_info data,
-        std::string filename,
-        IAudioGeneratorCallback* callback);
-    std::atomic<float> m_thread_render_progress{0.0f}; // Thread-safe progress tracking
+    void GenerateAudioFile(audio_info data, std::string filename, IAudioGeneratorCallback* callback);
+    std::atomic<float> m_thread_render_progress = 0.0f; // Thread-safe progress tracking
 private:
+    std::thread* thread_generate = nullptr;
+    std::atomic<bool> __terminate = false;
     virtual ~AudioGenerator() = default;
     AudioGenerator() {};
     template<typename T>
