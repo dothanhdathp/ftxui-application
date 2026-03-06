@@ -13,3 +13,11 @@
 ## Về Nhánh
 
 Tôi sẽ để phần code base lên nhánh `template`. Các nhánh còn lại nên _**checkout**_ hoặc sao chép về và biên dịch riêng.
+
+## Các Ứng Dụng
+
+### Audio Generator
+
+```text
+git clone git@github.com:dothanhdathp/ftxui-application.git -b audio-generator
+```
