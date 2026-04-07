@@ -1,3 +1,7 @@
+/**
+ * 
+ */
+
 #ifndef WAV_HPP
 #define WAV_HPP
 

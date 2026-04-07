@@ -38,7 +38,7 @@ void FtxApp::Refresh() {
 }
 
 void FtxApp::RenderScreen() {
-        // Add to Horizonetal elements list
+    // Add to Horizonetal elements list
     // ftxui::Component list_vertical_component = ftxui::Container::Vertical(
     //     std::vector<ftxui::Component>(std::views::values(mComponentMap).begin(), std::views::values(mComponentMap).end())
     // );
